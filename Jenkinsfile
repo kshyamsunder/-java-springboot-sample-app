@@ -54,6 +54,16 @@ pipeline{
      }
    }
 
+   stage('Deploying Application') {
+     steps {
+       script{
+         withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+         sh 'nohup java -jar ./target/jenkin-java-training-0.0.1-SNAPSHOT.jar &'
+         }
+       }
+     }
+   }
+
     post {
       success {
         slackSend color: 'warning', message: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} was successful ! :)"
