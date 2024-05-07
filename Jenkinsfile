@@ -26,5 +26,13 @@ pipeline{
           git branch: 'main', credentialsId: 'git-repo-creds', url: 'git@github.com:kshyamsunder/-java-springboot-sample-app.git'
         }
       }
-    }
+
+     stage('Compiling and Running Test Cases') {
+       steps {
+         sh 'mvn clean'
+         sh 'mvn compile'
+         sh 'mvn test'
+       }
+     }
+   }
 }
