@@ -35,12 +35,33 @@ pipeline{
        }
      }
 
+
+      stage('Send Slack Notification') {
+        steps {
+          slackSend color: 'warning', message: "Mr. Karthik: Please approve ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.JOB_URL} | Open>)"
+        }
+      }
+      stage('Request Input') {
+        steps {
+          input 'Please approve or deny this build'
+        }
+      }
+    
      stage('Creating package') {
        steps {
          sh 'mvn package'
        }
      }
-
-
    }
+
+    post {
+      success {
+        slackSend color: 'warning', message: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} was successful ! :)"
+      }
+      failure {
+          slackSend color: 'warning', message: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} failed :("
+      }
+    }
+
+
 }
