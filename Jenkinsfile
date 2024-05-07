@@ -52,7 +52,6 @@ pipeline{
          sh 'mvn package'
        }
      }
-   }
 
    stage('Deploying Application') {
      steps {
@@ -62,6 +61,7 @@ pipeline{
          }
        }
      }
+   }
    }
 
     post {
