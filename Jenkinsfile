@@ -21,9 +21,9 @@ pipeline{
          }
        }
      }
-      stage('Third Stage'){
+      stage('Download Java Code'){
         steps {
-          echo "Third Stage"
+          git branch: 'main', credentialsId: 'git-repo-creds', url: 'git@github.com:kshyamsunder/-java-springboot-sample-app.git'
         }
       }
     }
