@@ -14,6 +14,16 @@
     <name>webapp</name>
     <description>Demo Application for hands-on training </description>
 
+    <profiles>
+		<profile>
+
+		<id>skiptest</id>
+		<properties>
+		  <maven.test.skip>true</maven.test.skip>
+		</properties>
+
+		</profile>
+	</profiles>
     <properties>
         <java.version>1.8</java.version>
     </properties>
